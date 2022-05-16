@@ -14,11 +14,16 @@ struct ContentView: View {
     @State var isAutomatic = false
     @State var brightValue = 50.00
     
+    let appearenceTitle = "APPEARENCE"
+    let brightnessTitle = "BRIGHTNESS"
+    let footerTitle = "Use of higher brightness can reduce the power of the batteries."
+    
+    
     var body: some View {
         
         Form{
             
-            Section(header: Text("APPEARENCE")){
+            Section(header: Text(appearenceTitle)){
                 HStack {
                     Text("Automatic")
                     Spacer()
@@ -28,12 +33,15 @@ struct ContentView: View {
                     Text("Options")
                     Spacer()
                     Text("Light Until Sunset")
+                        .foregroundColor(.gray)
+                        .font(.system(.callout))
                 }
             }
 
-            Section(header: Text("BRIGHTNESS")) {
+            Section(header: Text(brightnessTitle), footer: Text(footerTitle).lineLimit(5)) {
                 HStack {
                     Image(systemName: "sun.max.fill")
+                        .foregroundColor(.gray)
                     
                     Slider(value: $brightValue, in: 0...100)
                         .onChange(of: brightValue) { newValue in
@@ -43,6 +51,7 @@ struct ContentView: View {
                     Image(systemName: "sun.max.fill")
                         .resizable()
                         .frame(width: 25, height: 25)
+                        .foregroundColor(.gray)
                      
                 }
             }
